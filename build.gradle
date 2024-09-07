@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 base.archivesName.set("kessoku-annotations")
@@ -21,4 +22,23 @@ tasks.withType(JavaCompile).configureEach {
 java {
     withJavadocJar()
     withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = base.archivesName.get()
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = "cloudsmith"
+            url = "https://api.cloudsmith.io/maven/kessokuteatime/annotations/"
+            credentials {
+                username = 'tex-true'
+                password = System.getenv("CLOUDSMITH_MAVEN_TOKEN")
+            }
+        }
+    }
 }
