@@ -15,4 +15,4 @@ jobs:
     - name: make gradle wrapper executable
       run: chmod +x ./gradlew
     - name: Build with Gradle Wrapper
-      run: ./gradlew build
+      run: ./gradlew build --warning-mode=all
