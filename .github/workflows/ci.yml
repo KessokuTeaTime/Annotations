@@ -5,7 +5,6 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 8
@@ -13,6 +12,7 @@ jobs:
       with:
         java-version: '8'
         distribution: 'temurin'
-
+    - name: make gradle wrapper executable
+      run: chmod +x ./gradlew
     - name: Build with Gradle Wrapper
       run: ./gradlew build
