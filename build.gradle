@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+base.archivesName.set("kessoku-annotations")
+group = "band.kessoku.annotations"
+version = "1.0.0"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    if (JavaVersion.current().isJava9Compatible()) {
+        it.options.release = 8
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
